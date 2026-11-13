@@ -26,10 +26,10 @@ Classe positiva: `alerta_contaminacao=1`. Métrica principal: recall >= **0,85**
 
 | Evidência | URL da execução |
 |---|---|
-| E1 CI verde na `main` | Pendente: exige repositório público da equipe |
-| E2 CI vermelho controlado em PR | Pendente: exige branch e PR da equipe |
-| E3 CT com drift e portão aprovado | Pendente: exige PR com lote e execução remota |
-| E4 CT com portão reprovado | Pendente: exige branch/PR e execução remota |
+| E1 CI verde na `main` | [CI verde na main](https://github.com/IsaacNilsonViana/mlops-qualidade-agua/actions/runs/43459328404) |
+| E2 CI vermelho controlado em PR | [CI vermelho no step Testes de código](https://github.com/IsaacNilsonViana/mlops-qualidade-agua/actions/runs/43459538409) |
+| E3 CT com drift e portão aprovado | [CT: drift 3/8 e portão aprovado](https://github.com/IsaacNilsonViana/mlops-qualidade-agua/actions/runs/43459640887) |
+| E4 CT com portão reprovado | [CT: precisão 0,705 e promoção bloqueada](https://github.com/IsaacNilsonViana/mlops-qualidade-agua/actions/runs/43459741801) |
 | E5 CD verde em tag e pacote GHCR | Pendente: exige tag, Actions e publicação remota |
 
 ## Limites, riscos e contribuição
