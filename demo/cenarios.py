@@ -3,8 +3,6 @@
 import argparse
 from pathlib import Path
 
-from mlops_demo.data import gerar_lote
-
 CENARIO_AGUA_BOA = {
     "pH": 7.2,
     "Turbidity (NTU)": 4.0,
@@ -21,7 +19,7 @@ CENARIO_AGUA_POLUIDA = dict(
 DESCRICOES = {
     1: "Remove um atributo na separação X/y: falha no teste de código",
     2: "Insere chumbo negativo na base: falha na validação de dados",
-    3: "Muda o limiar mínimo de recall para 1.01: falha no teste de modelo",
+    3: "Aumenta o peso da classe 0: recall do alerta cai no teste de modelo",
     4: "Cria lote válido com drift em turbidez, BOD e chumbo: CT detecta drift",
     5: "Peso extremo da classe de alerta: recall alto e precisão baixa no portão",
 }
@@ -40,10 +38,12 @@ def aplicar(numero):
         df.loc[0, "Lead (mg/L)"] = -1
         df.to_csv(p, index=False)
     elif numero == 3:
-        p = Path("src/mlops_demo/config.py")
+        p = Path("params.yaml")
         texto = p.read_text()
-        p.write_text(texto.replace("RECALL_MINIMO = 0.85", "RECALL_MINIMO = 1.01"))
+        p.write_text(texto.replace("class_weight: balanced", "class_weight: {0: 20, 1: 1}"))
     elif numero == 4:
+        from mlops_demo.data import gerar_lote
+
         print(gerar_lote("lote_drift", n=120, drift=1.5, semente=91))
     elif numero == 5:
         p = Path("params.yaml")
